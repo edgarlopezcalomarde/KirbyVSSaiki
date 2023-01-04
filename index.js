@@ -49,6 +49,10 @@ const player = new Fighter({
         jump:{
             imageSrc: "./img/kirby/jump.png",
             framesMax: 1,
+        },
+        fall:{
+            imageSrc: "./img/kirby/fall.png",
+            framesMax: 4,
         }
     }
 })
@@ -106,21 +110,24 @@ function animate () {
     enemy.velocity.x = 0
 
 
-    //Default player img
-    player.image = player.sprites.idle.image
-    player.framesMax = player.sprites.idle.framesMax
+   
     //Player movement
     if(keys.a.pressed && player.lastKey === 'a'){
         player.velocity.x = -4
-
+        player.switchSprite('run')
     }else if(keys.d.pressed && player.lastKey === 'd'){
-        player.image = player.sprites.run.image
+        player.switchSprite('run')
         player.velocity.x = 4
+    }else{
+        player.switchSprite('idle')
     }
 
+    //jumping
     if(player.velocity.y < 0){
-        player.image = player.sprites.jump.image
-        player.framesMax = player.sprites.jump.framesMax
+      player.switchSprite('jump')
+    }else if(player.velocity.y > 0){
+      player.switchSprite('fall')
+
     }
 
     //Enemy movement
