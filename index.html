@@ -4,39 +4,126 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Kirby vs Saiki</title>
 </head>
 <body>
 
     <style>
         *{
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
+    
+
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            max-width: 1024px;
+            margin: auto;
+        }
+
+        .game{
+            margin-top: 60px; 
+        }
+
+        .gameInfo{
+            margin-top: 60px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+
+            gap: 16px;
+        }
+
+        .player2{
+            text-align: end;
+        }
+
+        .title{
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .key{
+          
+            border: 2px solid #1e1d1d; 
+            box-shadow: 2px 2px #1e1d1d; 
+            font-size: .85em; 
+            line-height: .85em; 
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: .05em; 
+            padding: 3px 5px;
+            white-space: nowrap;
+
+        }
+        
     </style>
 
-    <div style="position: relative; display: inline-block;">
-        <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
-            <!-- player health -->
-            <div style="position: relative; height: 30px;  width: 100%; display: flex; justify-content: flex-end;">
-                <div style="background-color: yellow; height: 30px; width: 100%;"></div>
-                <div id="playerHealth" style="position:absolute; background-color: blue; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+    <section>
+
+        <div class="game">
+            <div  style="position: relative; display: inline-block;  border-radius: 6px; border: 8px solid #2563eb; background-color: #2563eb;">
+                <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
+                    <!-- player health -->
+                    <div style="position: relative; width: 100%; display: flex; justify-content: flex-end; border: 4px solid rgb(255, 255, 255);">
+                        <div style="background-color: #a6175e; height: 30px; width: 100%;"></div>
+                        <div id="playerHealth" style="position:absolute; background-color: #2563eb; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+                    </div>
+        
+                    <!-- timer -->
+                    <div id="timer" style="background-color: #1e1d1d; color:white;   width: 100px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                    
+                    </div>
+                    
+                    <!-- enemy health -->
+                    <div style="position: relative;  width: 100%; border: 4px solid rgb(255, 255, 255);">
+                        <div style="background-color: #a6175e;  height: 30px;"></div>
+                        <div id="enemyHealth" style="position:absolute; background-color: #2563eb; top: 0; right: 0; bottom: 0; left: 0;"></div>
+                    </div>
+                    
+                </div>
+                <div id="displayText" style="position: absolute; color: #a6175e ; font-size: 32px; font-weight: 800; word-spacing: 2px;  align-items: center; justify-content: center; top: 0; bottom: 0; right: 0; left: 0; display: none;">Tie</div>
+                <canvas></canvas>
+            </div>
+        </div>
+
+
+        <div class="gameInfo">
+
+
+            <div class="player player1">
+
+                <div class="title">Player 1</div>
+                
+                <div class="key">a</div> izquierda
+                <div class="key">w</div> arriba
+                <div class="key">d</div> derecha
+
+                <div class="key">Space</div> attack
             </div>
 
-            <!-- timer -->
-            <div id="timer" style="background-color: red; width: 100px; height: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
-            
+            <div class="player player2">
+
+                <div class="title">Player 2</div>
+
+                <div class="key">Enter</div> attack
+
+                <div class="key">→</div> derecha
+                <div class="key">↑</div> arriba
+                <div class="key">←</div> izquierda
+ 
             </div>
-            
-            <!-- enemy health -->
-            <div style="position: relative; height: 30px;  width: 100%;">
-                <div style="background-color: yellow; height: 30px;"></div>
-                <div id="enemyHealth" style="position:absolute; background-color: blue; top: 0; right: 0; bottom: 0; left: 0;"></div>
-            </div>
-            
+
+
         </div>
-        <div id="displayText" style="position: absolute; color: white; align-items: center; justify-content: center; top: 0; bottom: 0; right: 0; left: 0; display: none;">Tie</div>
-        <canvas></canvas>
-    </div>
+
+    </section>
 
     <script src="./js/classes.js"></script>
     <script src="./js/utils.js"></script>
